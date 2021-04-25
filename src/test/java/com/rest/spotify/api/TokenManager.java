@@ -39,15 +39,7 @@ public class TokenManager {
         renewTokenaValues.put ( "refresh_token" , "AQBnKV2vIsGTSaeHBMIo_925Z28vkh11NoIw-wgUr7r0X-i3sGiU3B52lc06PiiIwhNARNnWTh9V4LeZKb5dKGV8loWKbmrn0tkr2ZjsRKGaKytXOSwG7UzEjwmIXpUB3mU");
         renewTokenaValues.put ( "grant_type", "refresh_token" );
 
-       Response response =  given()
-                .baseUri ( "https://accounts.spotify.com")
-                .contentType ( ContentType.URLENC )
-                .formParams ( renewTokenaValues )
-               .log ().all ()
-                .when ().post ("/api/token")
-                .then ().spec ( getResponseSpec())
-                .extract ()
-                .response ();
+        Response response =   RestResource.postAccount ( renewTokenaValues );
 
         if(response.statusCode () !=200){
             throw new RuntimeException ( "ABBORT !!, Renew Token is failed" );

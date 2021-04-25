@@ -1,7 +1,10 @@
 package com.rest.spotify.api;
 
 import com.rest.spotify.pojo.PlayList;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+
+import java.util.HashMap;
 
 import static com.rest.spotify.api.SpecBuilder.getRequestSpec;
 import static com.rest.spotify.api.SpecBuilder.getResponseSpec;
@@ -16,6 +19,18 @@ public class RestResource {
                 .header ( "Authorization","Bearer "+token )
                 .when().post (path)
                 .then ().spec ( getResponseSpec () )
+                .extract ()
+                .response ();
+    }
+
+    public static Response postAccount( HashMap<String ,String> renewTokenaValues ){
+       return  given()
+                .baseUri ( "https://accounts.spotify.com")
+                .contentType ( ContentType.URLENC )
+                .formParams ( renewTokenaValues )
+                .log ().all ()
+                .when ().post ("/api/token")
+                .then ().spec ( getResponseSpec())
                 .extract ()
                 .response ();
     }

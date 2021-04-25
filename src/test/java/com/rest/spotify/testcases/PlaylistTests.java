@@ -13,18 +13,10 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static com.rest.spotify.api.SpecBuilder.getRequestSpec;
-import static com.rest.spotify.api.SpecBuilder.getResponseSpec;
-import static io.restassured.RestAssured.given;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 public class PlaylistTests {
-
-    RequestSpecification requestSpecification;
-    ResponseSpecification responseSpecification;
-
-    //String access_token ="BQBCRFT1khskFGbJdgFhaHG6jvks-5CU8i2EuY4LzmpQnW7mbdVLWS7UpEODeOxLAYEVWVyV83JFyVbbUqCTKmu6abDsiGcD24hvbj0UaNTH4ui26Tjzjao5zldOcD6gzy_913arONNgmO7_5lQojv1AVSxyhP0AQ0B8Eu4qi0S4WRX2lv1DkfY2R38C0viwqOHDn-Tbx_hOo54FsDtIP1D-hALy-DkXsvGF54wZyVVL";
-
 
     @Test
     public void shouldbeAbleToCreatePlaylist(){
