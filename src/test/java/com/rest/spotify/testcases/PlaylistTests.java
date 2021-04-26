@@ -64,16 +64,16 @@ public class PlaylistTests {
     }
 
     public PlayList playListBuilder(String name, String description, boolean _public){
-        return  new PlayList ()
-                .setName ( name )
-                .setDescription ( description )
-                .setPublic ( _public );
+        return PlayList.builder ().name ( name )
+                .description ( description )
+                ._public ( _public )
+                .build ();
     }
 
     public void assertPlaylistEqual(PlayList responsePlayllist, PlayList requestPlaylist){
         assertThat(responsePlayllist.getName (), equalTo ( requestPlaylist.getName () ));
         assertThat(responsePlayllist.getDescription (), equalTo ( requestPlaylist.getDescription ()));
-        assertThat(responsePlayllist.getPublic (), equalTo ( requestPlaylist.getPublic () ));
+        assertThat(responsePlayllist.get_public (), equalTo ( requestPlaylist.get_public () ));
     }
 
     public void assertStatusCode(int actualStatusCode, int expectedStatusCode){
