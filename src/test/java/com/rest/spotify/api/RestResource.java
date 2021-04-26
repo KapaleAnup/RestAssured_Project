@@ -6,8 +6,7 @@ import io.restassured.response.Response;
 
 import java.util.HashMap;
 
-import static com.rest.spotify.api.SpecBuilder.getRequestSpec;
-import static com.rest.spotify.api.SpecBuilder.getResponseSpec;
+import static com.rest.spotify.api.SpecBuilder.*;
 import static io.restassured.RestAssured.given;
 
 public class RestResource {
@@ -24,9 +23,7 @@ public class RestResource {
     }
 
     public static Response postAccount( HashMap<String ,String> renewTokenaValues ){
-       return  given()
-                .baseUri ( "https://accounts.spotify.com")
-                .contentType ( ContentType.URLENC )
+       return  given(getAccountRequestSpec ())
                 .formParams ( renewTokenaValues )
                 .log ().all ()
                 .when ().post ("/api/token")
